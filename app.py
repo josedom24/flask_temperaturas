@@ -1,5 +1,6 @@
 from flask import Flask, request,url_for,render_template,abort
 from lxml import etree
+import os
 app = Flask(__name__)	
 
 @app.route('/',methods=["GET","POST"])
@@ -20,4 +21,5 @@ def temperatura(code):
 	return render_template("temperaturas.html",name=name,max=max,min=min)
 
 if __name__ == '__main__':
-	app.run('0.0.0.0',$POSRT, debug=True)
+	port=os.environ["PORT"]
+	app.run('0.0.0.0',port, debug=True)

@@ -1,4 +1,3 @@
-from flask import Flask, request,url_for,render_template,abort
 from lxml import etree
 import os
 app = Flask(__name__)	
@@ -22,4 +21,4 @@ def temperatura(code):
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]
-	app.run('0.0.0.0',int(port), debug=True)
+	app.run('0.0.0.0',port, debug=True)

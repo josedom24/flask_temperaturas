@@ -21,5 +21,6 @@ def temperatura(code):
 	return render_template("temperaturas.html",name=name,max=max,min=min)
 
 if __name__ == '__main__':
-	port=os.environ["PORT"]
+	#port=os.environ["PORT"] //Para heroku
+	port="5000"
 	app.run('0.0.0.0',int(port), debug=True)

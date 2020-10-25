@@ -5,7 +5,9 @@ app = Flask(__name__)
 
 @app.route('/',methods=["GET","POST"])
 def inicio():
-	doc=etree.parse("sevilla.xml")
+	ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+	file_path = ROOT_PATH + "/" + "sevilla.xml"
+	doc=etree.parse(file_path)
 	municipios=doc.findall("municipio")
 	return render_template("inicio.html",municipios=municipios)
 

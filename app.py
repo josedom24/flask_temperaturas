@@ -1,5 +1,6 @@
 from flask import Flask, request,url_for,render_template,abort
 from lxml import etree
+import requests
 import os
 app = Flask(__name__)	
 
@@ -13,8 +14,11 @@ def inicio():
 
 @app.route('/<code>')
 def temperatura(code):
+	url="http://www.aemet.es/xml/municipios/localidad_"+code+".xml"
 	try:
-		doc=etree.parse("http://www.aemet.es/xml/municipios/localidad_"+code+".xml")
+		response = requests.get(url)
+		response.raise_for_status()  # Verifica si la descarga fue exitosa
+		doc = etree.fromstring(response.content)
 	except:
 		abort(404)
 	name=doc.find("nombre").text
